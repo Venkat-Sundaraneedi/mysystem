@@ -185,6 +185,7 @@
     ripgrep # grep → rg (faster)
     fd # find → fd (simpler, faster)
     zoxide # cd → z (smart jumps)
+    discord
 
     # === CLI - Search & Navigation ===
     fzf # Fuzzy finder
