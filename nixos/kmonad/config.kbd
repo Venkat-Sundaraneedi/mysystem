@@ -1,0 +1,24 @@
+(defcfg
+  input  (device-file "/dev/input/event0") ;; <--- Update this path
+  output (uinput-sink "My KMonad output")
+  fallthrough true
+  allow-cmd false
+  implicit-around around
+)
+
+(defsrc
+  s d f o l ;
+)
+
+(defalias
+  s (tap-hold 200 s lctl)
+  d (tap-hold 200 d lalt)
+  f (tap-hold 200 f lsft)
+  o (tap-hold 200 o lctl)
+  l (tap-hold 200 l lalt)
+  semicolon (tap-hold 200 ; lsft)
+)
+
+(deflayer base
+  @s @d @f @o @l @semicolon
+)
