@@ -19,7 +19,7 @@
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          # inherit system;
+          inherit system;
           inherit inputs;
         };
 
