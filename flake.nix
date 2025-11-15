@@ -5,36 +5,36 @@
   # INPUTS
   # ============================================================================
 
-  inputs = { nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable"; };
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    stylix.url = "github:danth/stylix";
+  };
 
   # ============================================================================
   # OUTPUTS
   # ============================================================================
 
-  outputs = { self, nixpkgs }:
-    let
-      system = "x86_64-linux";
-
-      pkgs = import nixpkgs {
-        inherit system;
-        config = { allowUnfree = true; };
-      };
+  outputs = { nixpkgs, ... }@inputs:
+    let system = "x86_64-linux";
     in {
-      nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit system; };
-
-          modules = [
-            # Core configuration
-            ./nixos/configuration.nix
-
-            # Hardware & drivers
-            ./nixos/modules/nvidia.nix
-
-            # Services
-            ./nixos/modules/docker.nix
-          ];
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit system;
+          inherit inputs;
         };
+
+        modules = [
+          # Core configuration
+          ./nixos/configuration.nix
+
+          # Hardware & drivers
+          ./nixos/modules/nvidia.nix
+
+          # Services
+          ./nixos/modules/docker.nix
+
+          inputs.stylix.nixModules.stylix
+        ];
       };
     };
 }
