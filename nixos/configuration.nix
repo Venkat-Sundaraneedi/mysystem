@@ -3,7 +3,10 @@
 {
   imports = [ ./hardware-configuration.nix ];
 
-  # Bootloader.
+  # ============================================================================
+  # BOOT & KERNEL
+  # ============================================================================
+
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
@@ -14,6 +17,10 @@
       efi.canTouchEfiVariables = true;
     };
   };
+
+  # ============================================================================
+  # NETWORKING
+  # ============================================================================
 
   networking = {
     hostName = "nixos";
@@ -36,10 +43,12 @@
     };
   };
 
-  # Set your time zone.
+  # ============================================================================
+  # LOCALIZATION
+  # ============================================================================
+
   time.timeZone = "Asia/Kolkata";
 
-  # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_IN";
     extraLocaleSettings = {
@@ -55,52 +64,85 @@
     };
   };
 
-  # Enable the GNOME Desktop Environment.
-  services = {
-    xserver = {
-      enable = true;
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
+  # ============================================================================
+  # DISPLAY SERVER & DESKTOP ENVIRONMENT
+  # ============================================================================
+
+  services.xserver = {
+    enable = true;
+    xkb = {
+      layout = "us";
+      variant = "";
     };
-    fwupd.enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-
-    printing.enable = true;
-    flatpak.enable = true;
-    pulseaudio.enable = false;
-
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      #jack.enable = true;
-      #media-session.enable = true;
-    };
-
-    kmonad = {
-      enable = true;
-      keyboards = {
-        mykmonadoutput = {
-          device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
-          config = builtins.readFile ./kmonad/config.kbd;
-        };
-      };
-    };
-
-    openssh.enable = true;
   };
 
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
+
+  # ============================================================================
+  # AUDIO
+  # ============================================================================
+
+  services.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    #jack.enable = true;
+    #media-session.enable = true;
+  };
+
+  # ============================================================================
+  # HARDWARE
+  # ============================================================================
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  # ============================================================================
+  # SERVICES
+  # ============================================================================
+
+  services.printing.enable = true;
+  services.flatpak.enable = true;
+  services.fwupd.enable = true;
+  services.openssh.enable = true;
+
+  services.kmonad = {
+    enable = true;
+    keyboards = {
+      mykmonadoutput = {
+        device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
+        config = builtins.readFile ./kmonad/config.kbd;
+      };
+    };
+  };
+
+  # ============================================================================
+  # FONTS
+  # ============================================================================
+
   fonts.fontconfig.enable = true;
+
+  # ============================================================================
+  # USERS
+  # ============================================================================
+
   users.users.greed = {
     isNormalUser = true;
     description = "0xgsvs";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.fish;
   };
+
+  # ============================================================================
+  # SYSTEM PACKAGES
+  # ============================================================================
 
   environment.systemPackages = with pkgs; [
     # === Build Tools & Compilers ===
@@ -129,9 +171,9 @@
     ghostty # Terminal emulator
 
     # === CLI - Modern Replacements ===
-    nh
-    nix-output-monitor
-    nvd
+    nh # Nix helper
+    nix-output-monitor # Nix build output
+    nvd # Nix version diff
     eza # ls → eza (with icons, git info)
     bat # cat → bat (syntax highlighting)
     ripgrep # grep → rg (faster)
@@ -171,37 +213,47 @@
     appimage-run # Run AppImages on NixOS
   ];
 
-  programs = {
-    nix-ld = {
-      enable = true;
-      libraries = with pkgs; [
-        gcc
-        gnumake
-        pkg-config
-        stdenv.cc.cc
-        zlib
-        openssl
-        openssl.dev
-      ];
-    };
-    appimage = {
-      enable = true;
-      binfmt = true;
-    };
-    fish = {
-      enable = true;
-      useBabelfish = true;
-      shellAliases = { };
-    };
-    mtr.enable = true;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
+  # ============================================================================
+  # PROGRAMS
+  # ============================================================================
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      gcc
+      gnumake
+      pkg-config
+      stdenv.cc.cc
+      zlib
+      openssl
+      openssl.dev
+    ];
   };
 
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
+  programs.fish = {
+    enable = true;
+    useBabelfish = true;
+    shellAliases = { };
+  };
+
+  programs.mtr.enable = true;
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+  # ============================================================================
+  # NIX CONFIGURATION
+  # ============================================================================
+
   nixpkgs.config.allowUnfree = true;
-  # Nix settings 
+
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
@@ -215,14 +267,9 @@
     };
   };
 
-  security.rtkit.enable = true;
-
-  # Enable OpenGL
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
+  # ============================================================================
+  # SYSTEM
+  # ============================================================================
 
   system.stateVersion = "25.05";
-
 }
