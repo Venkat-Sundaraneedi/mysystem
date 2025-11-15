@@ -19,7 +19,7 @@
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit system;
+          # inherit system;
           inherit inputs;
         };
 
@@ -33,7 +33,7 @@
           # Services
           ./nixos/modules/docker.nix
 
-          inputs.stylix.nixModules.stylix
+          inputs.stylix.nixosModules.stylix
         ];
       };
     };
