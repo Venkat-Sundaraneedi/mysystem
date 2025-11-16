@@ -158,10 +158,11 @@
 
     # === Development - Language Toolchains ===
     rustup # Rust toolchain manager
-    nodejs_24 # Node.js runtime
+    # nodejs_24 # Node.js runtime
 
     # === Development - Language Tools ===
     poetry # Python package/dependency manager
+    python314
     lua51Packages.lua # Lua interpreter
     luajitPackages.luarocks_bootstrap # Lua package manager
 
@@ -212,6 +213,7 @@
 
     # === Containers & Virtualization ===
     lazydocker # Docker TUI
+    gnumake
 
     # === Applications ===
     brave # Web browser
