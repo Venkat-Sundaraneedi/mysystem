@@ -3,11 +3,10 @@
 {
   imports = [ ./hardware-configuration.nix ];
 
-  # stylix = {
-  #   enable = true;
-  #   base16Scheme =
-  #     "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
-  # };
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/sandcastle.yaml";
+  };
 
   # ============================================================================
   # BOOT & KERNEL
@@ -156,13 +155,7 @@
     cmake # Build system
     pkg-config # Package config tool
 
-    # === Development - Language Toolchains ===
-    rustup # Rust toolchain manager
-    # nodejs_24 # Node.js runtime
-
     # === Development - Language Tools ===
-    poetry # Python package/dependency manager
-    python314
     lua51Packages.lua # Lua interpreter
     luajitPackages.luarocks_bootstrap # Lua package manager
 
@@ -179,6 +172,7 @@
 
     # === CLI - Modern Replacements ===
     nh # Nix helper
+    dust
     nix-output-monitor # Nix build output
     nvd # Nix version diff
     eza # ls → eza (with icons, git info)
@@ -213,7 +207,6 @@
 
     # === Containers & Virtualization ===
     lazydocker # Docker TUI
-    gnumake
 
     # === Applications ===
     brave # Web browser
