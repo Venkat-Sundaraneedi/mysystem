@@ -151,9 +151,7 @@
 
   environment.systemPackages = with pkgs; [
     # === Build Tools & Compilers ===
-    gcc # C/C++ compiler (needed for cargo install)
     cmake # Build system
-    pkg-config # Package config tool
 
     # === Development - Language Tools ===
     lua51Packages.lua # Lua interpreter
@@ -172,6 +170,7 @@
 
     # === CLI - Modern Replacements ===
     nh # Nix helper
+    jujutsu
     dust
     nix-output-monitor # Nix build output
     nvd # Nix version diff
