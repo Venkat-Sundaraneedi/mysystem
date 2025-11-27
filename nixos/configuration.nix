@@ -2,17 +2,6 @@
   imports = [./hardware-configuration.nix];
 
   # ============================================================================
-  # THEMING
-  # ============================================================================
-
-  stylix = {
-    enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-medium.yaml";
-    # Options: everforest-dark-medium, everforest-dark-soft, horizon-dark,
-    # horizon-terminal-dark, sandcastle
-  };
-
-  # ============================================================================
   # BOOT & KERNEL
   # ============================================================================
 
@@ -146,6 +135,7 @@
 
     # Development - Version Control
     git
+    difftastic
     lazygit
     jujutsu
     jjui
