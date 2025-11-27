@@ -17,9 +17,9 @@
   # OUTPUTS
   # ============================================================================
 
-  outputs = { nixpkgs, stylix, ... }: {
+  outputs = { nixpkgs, ... }@inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+      specialArgs = { inherit inputs; };
       modules = [
         # Core configuration
         ./nixos/configuration.nix
@@ -30,7 +30,8 @@
         # Services
         ./nixos/modules/docker.nix
 
-        stylix.nixosModules.stylix
+        # Stylix
+        inputs.stylix.nixosModules.stylix
       ];
     };
   };

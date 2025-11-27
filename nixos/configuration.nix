@@ -1,11 +1,12 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ ./hardware-configuration.nix ];
 
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/sandcastle.yaml";
+    base16Scheme =
+      "${pkgs.base16-schemes}/share/themes/everforest-dark-medium.yaml"; # everforest-dark-medium , everforest-dark-soft , horizon-dark , horizon-terminal-dark, sandcastle
   };
 
   # ============================================================================
@@ -151,9 +152,10 @@
 
   environment.systemPackages = with pkgs; [
     # === Build Tools & Compilers ===
-    cmake # Build system
+    # cmake # Build system
 
     # === Development - Language Tools ===
+    nodejs_24
     lua51Packages.lua # Lua interpreter
     luajitPackages.luarocks_bootstrap # Lua package manager
 
@@ -220,15 +222,16 @@
 
   programs.nix-ld = {
     enable = true;
-    libraries = with pkgs; [
-      gcc
-      gnumake
-      pkg-config
-      stdenv.cc.cc
-      zlib
-      openssl
-      openssl.dev
-    ];
+    libraries = with pkgs;
+      [
+        # gcc
+        # gnumake
+        # pkg-config
+        # stdenv.cc.cc
+        # zlib
+        # openssl
+        # openssl.dev
+      ];
   };
 
   programs.appimage = {
