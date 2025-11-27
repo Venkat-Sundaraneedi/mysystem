@@ -237,6 +237,17 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
+    registry.templates = {
+      from = {
+        type = "indirect";
+        id = "templates";
+      };
+      to = {
+        type = "path";
+        path = "/home/greed/mysystem/nixos/nixos-templates/";
+      };
+    };
+
     settings = {
       experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
