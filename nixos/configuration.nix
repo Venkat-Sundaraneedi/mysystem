@@ -148,6 +148,7 @@
     git
     lazygit
     jujutsu
+    jjui
 
     # Development - Tools
     repomix
