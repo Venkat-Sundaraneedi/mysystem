@@ -1,12 +1,9 @@
-{ pkgs, ... }:
-
-{
-  imports = [ ./hardware-configuration.nix ];
+{pkgs, ...}: {
+  imports = [./hardware-configuration.nix];
 
   stylix = {
     enable = true;
-    base16Scheme =
-      "${pkgs.base16-schemes}/share/themes/everforest-dark-medium.yaml"; # everforest-dark-medium , everforest-dark-soft , horizon-dark , horizon-terminal-dark, sandcastle
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-medium.yaml"; # everforest-dark-medium , everforest-dark-soft , horizon-dark , horizon-terminal-dark, sandcastle
   };
 
   # ============================================================================
@@ -142,7 +139,7 @@
   users.users.greed = {
     isNormalUser = true;
     description = "0xgsvs";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     shell = pkgs.fish;
   };
 
@@ -222,16 +219,15 @@
 
   programs.nix-ld = {
     enable = true;
-    libraries = with pkgs;
-      [
-        # gcc
-        # gnumake
-        # pkg-config
-        # stdenv.cc.cc
-        # zlib
-        # openssl
-        # openssl.dev
-      ];
+    libraries = with pkgs; [
+      # gcc
+      # gnumake
+      # pkg-config
+      # stdenv.cc.cc
+      # zlib
+      # openssl
+      # openssl.dev
+    ];
   };
 
   programs.appimage = {
@@ -242,7 +238,7 @@
   programs.fish = {
     enable = true;
     useBabelfish = true;
-    shellAliases = { };
+    shellAliases = {};
   };
 
   programs.mtr.enable = true;
@@ -260,7 +256,7 @@
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
     };
 

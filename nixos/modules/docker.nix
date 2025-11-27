@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-{
+{pkgs, ...}: {
   hardware.nvidia-container-toolkit.enable = true;
   # Enable Docker
   virtualisation.docker = {
@@ -13,5 +11,5 @@
   };
 
   # Docker Compose (v2, plugin-based)
-  environment.systemPackages = with pkgs; [ docker-compose ];
+  environment.systemPackages = with pkgs; [docker-compose];
 }

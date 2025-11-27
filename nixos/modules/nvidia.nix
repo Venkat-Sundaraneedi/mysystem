@@ -1,8 +1,10 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Load NVIDIA driver for Xorg and Wayland
-  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
+  services.xserver.videoDrivers = ["amdgpu" "nvidia"];
 
   hardware.nvidia = {
     prime = {
@@ -30,8 +32,7 @@
   };
 
   # Add nvidia-offload script for easy GPU switching
-  environment.systemPackages = with pkgs;
-    [
-      nvtopPackages.nvidia # GPU monitoring
-    ];
+  environment.systemPackages = with pkgs; [
+    nvtopPackages.nvidia # GPU monitoring
+  ];
 }
