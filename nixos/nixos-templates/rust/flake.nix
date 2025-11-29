@@ -44,7 +44,7 @@
 
     devShells.${system}.default = pkgs.mkShell {
       buildInputs = with pkgs; [
-        (rust-bin.nightly.latest.default)
+        rustToolchain
         bacon
         cargo-nextest
         cargo-audit
