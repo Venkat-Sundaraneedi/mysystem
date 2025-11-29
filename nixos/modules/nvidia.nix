@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{config, ...}: {
   # Load NVIDIA driver for Xorg and Wayland
   services.xserver.videoDrivers = ["amdgpu" "nvidia"];
 
@@ -30,9 +26,4 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
-
-  # Add nvidia-offload script for easy GPU switching
-  environment.systemPackages = with pkgs; [
-    nvtopPackages.nvidia # GPU monitoring
-  ];
 }

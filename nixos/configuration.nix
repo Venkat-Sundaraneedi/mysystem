@@ -169,7 +169,7 @@
     # System Monitoring
     fastfetch
     btop
-    nvtopPackages.nvidia
+    # nvtopPackages.nvidia
 
     # System Utilities
     lshw
@@ -205,6 +205,18 @@
       # ];
     };
 
+    direnv = {
+      enable = true;
+      package = pkgs.direnv;
+      silent = true;
+      loadInNixShell = true;
+      direnvrcExtra = "";
+      nix-direnv = {
+        enable = true;
+        package = pkgs.nix-direnv;
+      };
+    };
+
     appimage = {
       enable = true;
       binfmt = true;
@@ -217,11 +229,6 @@
         devshell = "nix shell nixpkgs#glib nixpkgs#openssl nixpkgs#gcc nixpkgs#gnumake nixpkgs#pkg-config nixpkgs#stdenv.cc.cc nixpkgs#zlib nixpkgs#openssl.dev";
       };
     };
-
-    # neovim = {
-    #   enable = true;
-    #   defaultEditor = true;
-    # };
 
     mtr.enable = true;
 
