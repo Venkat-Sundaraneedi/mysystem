@@ -180,6 +180,7 @@
     nh
     nix-output-monitor
     nvd
+    nil
 
     # Containers
     lazydocker

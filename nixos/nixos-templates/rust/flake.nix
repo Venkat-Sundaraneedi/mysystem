@@ -25,8 +25,8 @@
       overlays = [(import rust-overlay)];
     };
     naerskLib = pkgs.callPackage naersk {};
-    # rustToolchain = pkgs.rust-bin.stable.latest.default;
-    rustToolchain = pkgs.rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
+    rustToolchain = pkgs.rust-bin.stable.latest.default;
+    # rustToolchain = pkgs.rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
   in {
     packages.${system}.default =
       (naerskLib.override {
