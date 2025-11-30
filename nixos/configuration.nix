@@ -181,6 +181,10 @@
     nh
     nix-output-monitor
     nvd
+    mise
+    usage
+
+    #LSP's
     nil
 
     # Containers

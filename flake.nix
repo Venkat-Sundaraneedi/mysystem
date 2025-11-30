@@ -7,10 +7,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   # ============================================================================
@@ -29,9 +25,6 @@
 
         # Services
         ./nixos/modules/docker.nix
-
-        # Stylix
-        inputs.stylix.nixosModules.stylix
       ];
     };
   };

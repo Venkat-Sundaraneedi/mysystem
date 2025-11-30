@@ -52,6 +52,7 @@
         glib
         openssl
         pkg-config
+        mise
         rust-analyzer
       ];
 
