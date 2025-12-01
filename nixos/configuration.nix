@@ -145,7 +145,7 @@
     jjui
 
     # Development - Tools
-    # repomix
+    repomix
     # diff-so-fancy
 
     # Terminal & Multiplexers
