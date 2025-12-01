@@ -181,6 +181,10 @@
     nh
     nix-output-monitor
     nvd
+
+    television
+    nix-search-tv
+
     mise
     usage
 
@@ -276,5 +280,7 @@
   # SYSTEM
   # ============================================================================
 
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot = false;
   system.stateVersion = "25.05";
 }
