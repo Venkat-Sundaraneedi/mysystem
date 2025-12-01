@@ -119,7 +119,11 @@
   users.users.greed = {
     isNormalUser = true;
     description = "0xgsvs";
-    extraGroups = ["networkmanager" "wheel" "docker"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
     shell = pkgs.fish;
   };
 
@@ -158,6 +162,7 @@
     # CLI - Search & Text Processing
     fzf
     jq
+    opencode
 
     # CLI - File Operations
     unzip
@@ -190,6 +195,7 @@
 
     #LSP's
     nil
+    alejandra # nix formatter
 
     # Containers
     lazydocker
@@ -265,7 +271,10 @@
     };
 
     settings = {
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
     };
 
