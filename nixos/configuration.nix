@@ -146,7 +146,6 @@
 
     # Development - Tools
     repomix
-    # diff-so-fancy
 
     # Terminal & Multiplexers
     ghostty
