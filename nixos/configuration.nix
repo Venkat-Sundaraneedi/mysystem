@@ -174,7 +174,6 @@
     # System Monitoring
     fastfetch
     btop
-    # nvtopPackages.nvidia
 
     # System Utilities
     lshw
